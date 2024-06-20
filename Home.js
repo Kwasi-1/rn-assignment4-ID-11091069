@@ -1,6 +1,4 @@
-import React from 'react';
 import { View, Text, TextInput, Image, FlatList, StyleSheet, StatusBar, ImageBackground } from 'react-native';
-// import featuredJobs from './FeaturedJobs';
 import popularJobs from './popularJobs';
 
 const JobItem = ({ job }) => (
