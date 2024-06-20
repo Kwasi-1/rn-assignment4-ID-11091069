@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet } from 'react-native';
 
-const LoginScreen = ({ navigation }) => {
+const Login = ({ navigation }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
 
@@ -39,12 +39,12 @@ const LoginScreen = ({ navigation }) => {
       </TouchableOpacity>
       <View style={styles.orSection}>
         <Image 
-          source={require('./assets/Line 1.png')} 
+          source={require('./assets/Line.png')} 
           style={styles.orline} 
         />
         <Text style={styles.orText}>Or continue with</Text>
         <Image 
-          source={require('./assets/Line 1.png')} 
+          source={require('./assets/Line.png')} 
           style={styles.orline} 
         />
       </View>
@@ -180,4 +180,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginScreen;
+export default Login;
