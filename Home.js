@@ -1,7 +1,8 @@
+import react, { memo } from 'react';
 import { View, Text, TextInput, Image, FlatList, StyleSheet, StatusBar, ImageBackground } from 'react-native';
 import popularJobs from './popularJobs';
 
-const JobItem = ({ job }) => (
+const JobItem = memo(({ job }) => (
   <View style={styles.jobItem}>
     <Image source={job.logo} style={styles.jobLogo} />
     <View style={styles.jobInfo}>
@@ -13,7 +14,25 @@ const JobItem = ({ job }) => (
       <Text style={styles.jobLocation}>{job.location}</Text>
     </View>
   </View>
-);
+));
+
+const JobCard = memo(({item}) => (
+  <ImageBackground source={require('./assets/Mask Group.png')} style={[styles.featuredJobItem, {backgroundColor: item.backgroundColor}]}>
+    <View style={styles.featuredJob}>
+      <View style={styles.featuredJobLogoContainer}>
+        <Image source={item.logo} style={styles.featuredJobLogo} />
+      </View>
+      <View>
+        <Text style={styles.featuredJobTitle}>{item.title}</Text>
+        <Text style={styles.featuredJobCompany}>{item.company}</Text>
+      </View>
+    </View>
+    <View style={styles.featuredJobDetails}>
+      <Text style={styles.featuredJobSalary}>{item.salary}</Text>
+      <Text style={styles.featuredJobLocation}>{item.location}</Text>
+    </View>
+  </ImageBackground>
+));
 
 const featuredJobs = popularJobs.slice(3);
 
@@ -53,7 +72,7 @@ const Home = ({ route }) => {
             />
         </View>
       </View>
-      <View style={[styles.jobsSection, {padding:0}]}>
+      <View style={styles.jobsSection}>
         <View style={styles.sectionHeader}>
           <Text style={styles.sectionTitle}>Featured Jobs</Text>
           <Text style={styles.sectionSubtitle}>See all</Text>
@@ -62,27 +81,13 @@ const Home = ({ route }) => {
           data={featuredJobs}
           horizontal
           keyExtractor={item => item.id}
-          renderItem={({ item }) => (
-            <ImageBackground source={require('./assets/Mask Group.png')} style={[styles.featuredJobItem, {backgroundColor: item.backgroundColor}]}>
-              <View style={styles.featuredJob}>
-                <View style={styles.featuredJobLogoContainer}>
-                  <Image source={item.logo} style={styles.featuredJobLogo} />
-                </View>
-                <View>
-                  <Text style={styles.featuredJobTitle}>{item.title}</Text>
-                  <Text style={styles.featuredJobCompany}>{item.company}</Text>
-                </View>
-              </View>
-              <View style={styles.featuredJobDetails}>
-                <Text style={styles.featuredJobSalary}>{item.salary}</Text>
-                <Text style={styles.featuredJobLocation}>{item.location}</Text>
-              </View>
-            </ImageBackground>
-          )}
+          renderItem={({ item }) => <JobCard item={item}/>}
           showsHorizontalScrollIndicator={false}
         />
       </View>
-      <Text style={styles.sectionTitle}>Popular Jobs</Text>
+      <View style={styles.sectionHeader}>
+        <Text style={styles.sectionTitle}>Popular Jobs</Text>
+      </View>
     </View>
   );
 
@@ -108,7 +113,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FAFAFD',
-    padding: 20,
+    // padding: 20,
     paddingTop: 50,
   },
   header: {
@@ -116,6 +121,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 20,
     justifyContent: 'space-between',
+    paddingHorizontal: 20,
   },
   name: {
     fontSize: 24,
@@ -148,6 +154,7 @@ const styles = StyleSheet.create({
   searchContainer: {
     flexDirection: 'row',
     marginBottom: 20,
+    paddingHorizontal: 20,
   },
   searchInput: {
     flex: 1,
@@ -180,6 +187,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginBottom: 20,
+    paddingHorizontal: 20,
   },
   sectionTitle: {
     fontSize: 18,
@@ -195,7 +203,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#5386E4',
     borderRadius: 15,
     padding: 25,
-    marginRight: 10,
+    marginLeft: 10,
     overflow: 'hidden',
   },
   featuredJob: {
@@ -252,7 +260,7 @@ const styles = StyleSheet.create({
   jobLogo: {
     width: 40,
     height: 40,
-    borderRadius: 20,
+    // borderRadius: 20,
     marginRight: 15,
   },
   jobInfo: {
