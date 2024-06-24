@@ -44,16 +44,16 @@ const Login = ({ navigation }) => {
         <Text style={styles.loginButtonText}>Log in</Text>
       </TouchableOpacity>
       <View style={styles.orSection}>
-        <Image source={require("./assets/Line.png")} style={styles.orline} />
+        <Image source={require("../assets/Line.png")} style={styles.orline} />
         <Text style={styles.orText}>Or continue with</Text>
-        <Image source={require("./assets/Line.png")} style={styles.orline} />
+        <Image source={require("../assets/Line.png")} style={styles.orline} />
       </View>
 
       <View style={styles.socialIconsContainer}>
         <TouchableOpacity>
           <View style={styles.socialIconContainer}>
             <Image
-              source={require("./assets/apple.png")}
+              source={require("../assets/apple.png")}
               style={styles.socialIcon}
             />
           </View>
@@ -61,7 +61,7 @@ const Login = ({ navigation }) => {
         <TouchableOpacity>
           <View style={styles.socialIconContainer}>
             <Image
-              source={require("./assets/google.png")}
+              source={require("../assets/google.png")}
               style={styles.socialIcon}
             />
           </View>
@@ -69,7 +69,7 @@ const Login = ({ navigation }) => {
         <TouchableOpacity>
           <View style={styles.socialIconContainer}>
             <Image
-              source={require("./assets/facebook.png")}
+              source={require("../assets/facebook.png")}
               style={styles.socialIcon}
             />
           </View>

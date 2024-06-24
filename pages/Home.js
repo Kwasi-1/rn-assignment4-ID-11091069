@@ -1,38 +1,8 @@
 import react, { memo } from 'react';
 import { View, Text, TextInput, Image, FlatList, StyleSheet, StatusBar, ImageBackground } from 'react-native';
-import popularJobs from './popularJobs';
-
-const JobItem = memo(({ job }) => (
-  <View style={styles.jobItem}>
-    <Image source={job.logo} style={styles.jobLogo} />
-    <View style={styles.jobInfo}>
-      <Text style={styles.jobTitle}>{job.title}</Text>
-      <Text style={styles.jobCompany}>{job.company}</Text>
-    </View>
-    <View>
-      <Text style={styles.jobSalary}>{job.salary}</Text>
-      <Text style={styles.jobLocation}>{job.location}</Text>
-    </View>
-  </View>
-));
-
-const JobCard = memo(({item}) => (
-  <ImageBackground source={require('./assets/Mask Group.png')} style={[styles.featuredJobItem, {backgroundColor: item.backgroundColor}]}>
-    <View style={styles.featuredJob}>
-      <View style={styles.featuredJobLogoContainer}>
-        <Image source={item.logo} style={styles.featuredJobLogo} />
-      </View>
-      <View>
-        <Text style={styles.featuredJobTitle}>{item.title}</Text>
-        <Text style={styles.featuredJobCompany}>{item.company}</Text>
-      </View>
-    </View>
-    <View style={styles.featuredJobDetails}>
-      <Text style={styles.featuredJobSalary}>{item.salary}</Text>
-      <Text style={styles.featuredJobLocation}>{item.location}</Text>
-    </View>
-  </ImageBackground>
-));
+import popularJobs from '../popularJobs';
+import JobCard from '../component/JobCard';
+import JobItem from '../component/JobItem';
 
 const featuredJobs = popularJobs.slice(3);
 
@@ -48,12 +18,12 @@ const Home = ({ route }) => {
         </View>
         <View>
           <Image 
-            source={require('./assets/profile.png')} 
+            source={require('../assets/profile.png')} 
             style={styles.profileImage} 
           />
           <View style={styles.profileDotContainer}>
             <Image 
-              source={require('./assets/profileDot.png')} 
+              source={require('../assets/profileDot.png')} 
               style={styles.profileDot} 
             />
           </View>
@@ -67,7 +37,7 @@ const Home = ({ route }) => {
         />
         <View style={styles.searchFilter}>
           <Image 
-              source={require('./assets/filter-icon.png')} 
+              source={require('../assets/filter-icon.png')} 
               style={styles.filterIcon} 
             />
         </View>
@@ -197,100 +167,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#95969D',
   },
-  featuredJobItem: {
-    width: 280,
-    height: 186,
-    backgroundColor: '#5386E4',
-    borderRadius: 15,
-    padding: 25,
-    marginLeft: 10,
-    overflow: 'hidden',
-  },
-  featuredJob: {
-    flexDirection: 'row',
-    marginBottom: 10,
-  },
-  featuredJobLogoContainer: {
-    width: 46,
-    height: 46,
-    backgroundColor: '#FFFFFF',
-    borderRadius: 12,
-    justifyContent: 'center',
-    alignContent: 'center',
-    marginRight: 15,
-  },
-  featuredJobLogo: {
-    width: 23.57,
-    height: 23.57,
-    alignSelf: 'center'
-  },
-  featuredJobTitle: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#FFF',
-  },
-  featuredJobCompany: {
-    fontSize: 14,
-    color: '#fff',
-    marginBottom: 10,
-  },
-  featuredJobDetails: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingTop: 60,
-  },
-  featuredJobSalary: {
-    fontSize: 14,
-    color: '#fff',
-  },
-  featuredJobLocation: {
-    fontSize: 14,
-    color: '#fff',
-  },
-  jobItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#FFFFFF',
-    borderRadius: 20,
-    height: 74,
-    padding: 15,
-    marginHorizontal: 20,
-    marginBottom: 10,
-  },
-  jobLogo: {
-    width: 40,
-    height: 40,
-    // borderRadius: 20,
-    marginRight: 15,
-  },
-  jobInfo: {
-    flex: 1,
-  },
-  jobTitle: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginBottom: 3,
-    lineHeight: 19.2
-  },
-  jobCompany: {
-    fontSize: 14,
-    color: '#666',
-    lineHeight: 20.8
-
-  },
-  jobSalary: {
-    fontSize: 14,
-    fontWeight: '600',
-    alignSelf: 'flex-end',
-    color: '#0D0D26',
-    marginBottom: 3,
-    lineHeight: 19.2
-  },
-  jobLocation: {
-    fontSize: 14,
-    color: '#0D0D26',
-    lineHeight: 20.8
-  },
+  
 });
 
 export default Home;
